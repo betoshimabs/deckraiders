@@ -197,26 +197,21 @@ body {
 
 .btn-retro-action {
   font-family: var(--font-fantasy);
-  font-size: 1.8rem;
-  color: #ffffff;
-  background: radial-gradient(circle at 30% 30%, var(--color-crimson-hover) 0%, var(--color-crimson) 100%);
-  border: 3px double var(--color-gold-light);
-  padding: 14px 44px;
-  border-radius: 4px;
+  font-size: 2.2rem;
+  color: var(--color-crimson-hover);
+  background: transparent;
+  border: none;
+  padding: 0;
   cursor: pointer;
-  letter-spacing: 2px;
-  box-shadow: 
-    0 8px 16px rgba(0, 0, 0, 0.6),
-    inset 0 2px 4px rgba(255, 255, 255, 0.3);
+  letter-spacing: 3px;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.9);
   transition: all 0.2s ease-in-out;
 }
 
 .btn-retro-action:hover {
-  transform: translateY(-3px);
-  background: radial-gradient(circle at 30% 30%, #da1e28 0%, var(--color-crimson-hover) 100%);
-  box-shadow: 
-    0 12px 20px rgba(0, 0, 0, 0.7),
-    0 0 15px rgba(193, 18, 31, 0.4);
+  transform: translateY(-2px) scale(1.05);
+  color: var(--color-gold-light);
+  text-shadow: 0 0 15px rgba(255, 209, 98, 0.5);
 }
 
 .tabletop-caption {
