@@ -50,72 +50,71 @@ function App() {
   };
 
   return (
-    <div className="crt-screen">
-      <div className="scanlines"></div>
-      
-      <div className="game-container">
-        {/* HEADER / HUD TOP BAR */}
-        <header className="game-hud-bar">
+    <div className="tabletop-table">
+      <div className="tabletop-wrapper">
+        
+        {/* TOP BANNER HUD */}
+        <header className="hud-banner">
           <div className="hud-left">
-            <span className="hud-badge">SYS: ONLINE</span>
+            <span className="hud-badge-gold">✦ PORTAL DA MASMORRA ✦</span>
           </div>
 
           <div className="auth-panel-wrapper">
             <button 
-              className={`hud-btn-auth ${isLoggedIn ? 'active-user' : isAnonymous ? 'active-guest' : ''}`}
+              className={`hud-btn-parchment ${isLoggedIn ? 'active-user' : isAnonymous ? 'active-guest' : ''}`}
               onClick={() => setPanelOpen(!panelOpen)}
             >
-              {isLoggedIn ? `👤 ${user?.email.split('@')[0]}` : isAnonymous ? '👤 CONVIDADO' : '🔑 CONECTAR'}
+              {isLoggedIn ? `👤 ${user?.email.split('@')[0].toUpperCase()}` : isAnonymous ? '👤 CONVIDADO' : '🔑 CONECTAR'}
             </button>
 
             {panelOpen && (
-              <div className="retro-modal">
+              <div className="parchment-modal">
                 <div className="modal-header">
-                  <h4>{isLoggedIn ? 'PERFIL' : authMode === 'login' ? 'ENTRAR' : 'REGISTRAR'}</h4>
+                  <h4>{isLoggedIn ? 'PERFIL DO HERÓI' : authMode === 'login' ? 'LOGIN' : 'RECRUTAMENTO'}</h4>
                   <button className="modal-close" onClick={() => { setPanelOpen(false); clearError(); setMessage(''); }}>×</button>
                 </div>
 
                 {isLoggedIn ? (
-                  <div className="modal-body logged-in-info">
-                    <p>STATUS: CAMPEÃO</p>
-                    <p>EMAIL: {user?.email}</p>
-                    <button className="btn-primary w-full" onClick={() => { logout(); setPanelOpen(false); }}>
-                      SAIR DA SESSÃO
+                  <div className="modal-body">
+                    <p>STATUS: CAMPEÃO DA MESA</p>
+                    <p>E-MAIL: {user?.email}</p>
+                    <button className="btn-retro-red w-full" onClick={() => { logout(); setPanelOpen(false); }}>
+                      DESCONECTAR
                     </button>
                   </div>
                 ) : (
                   <form onSubmit={handleAuthSubmit} className="modal-body">
-                    {(error || message) && <div className="error-box">{error || message}</div>}
+                    {(error || message) && <div className="error-scroll">{error || message}</div>}
 
-                    <div className="retro-input-group">
-                      <label>EMAIL</label>
+                    <div className="parchment-input-group">
+                      <label>ENDEREÇO DE E-MAIL</label>
                       <input 
                         type="email" 
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        placeholder="nome@masmorra.com"
+                        placeholder="heroi@masmorra.com"
                       />
                     </div>
 
-                    <div className="retro-input-group">
-                      <label>SENHA</label>
+                    <div className="parchment-input-group">
+                      <label>SENHA DE ACESSO</label>
                       <input 
                         type="password" 
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        placeholder="******"
+                        placeholder="••••••"
                       />
                     </div>
 
-                    <button type="submit" className="btn-primary w-full" disabled={loading}>
+                    <button type="submit" className="btn-retro-gold w-full" disabled={loading}>
                       {loading ? 'CARREGANDO...' : authMode === 'login' ? 'ENTRAR' : 'REGISTRAR'}
                     </button>
 
                     <div className="modal-switch">
                       {authMode === 'login' ? (
-                        <p>NÃO POSSUI CONTA? <span onClick={() => { setAuthMode('register'); clearError(); setMessage(''); }}>CADASTRAR</span></p>
+                        <p>NOVO HERÓI? <span onClick={() => { setAuthMode('register'); clearError(); setMessage(''); }}>CADASTRAR</span></p>
                       ) : (
-                        <p>JÁ CADASTRADO? <span onClick={() => { setAuthMode('login'); clearError(); setMessage(''); }}>ENTRAR</span></p>
+                        <p>JÁ POSSUI FICHA? <span onClick={() => { setAuthMode('login'); clearError(); setMessage(''); }}>ENTRAR</span></p>
                       )}
                     </div>
                   </form>
@@ -125,66 +124,66 @@ function App() {
           </div>
         </header>
 
-        {/* MAIN DISPLAY AREA */}
-        <main className="game-display">
+        {/* MAIN PLAYING BOARD */}
+        <main className="playing-board">
           {!(isLoggedIn || isAnonymous) ? (
-            /* MENU PRINCIPAL (LIMPO) */
-            <div className="main-menu fade-in">
-              <div className="title-logo">
-                <span className="subtitle-tag">AN ASYNCHRONOUS AUTO-BATTLER</span>
-                <h1 className="title-text">DECK RAIDERS</h1>
+            /* TELA INICIAL (MENU MESA) */
+            <div className="menu-scroll fade-in">
+              <div className="fantasy-logo">
+                <span className="fantasy-tag">ROGuelite de cartas e tabuleiro</span>
+                <h1 className="title-fantasy">DECK RAIDERS</h1>
               </div>
 
-              <div className="menu-choices">
-                <button className="btn-start-game" onClick={startAsGuest}>
+              <div className="menu-action-zone">
+                <button className="btn-wax-seal" onClick={startAsGuest}>
                   INICIAR JOGO
                 </button>
-                <div className="guest-warning-text">
-                  MODO DEMONSTRAÇÃO ATIVO COMO CONVIDADO
+                <div className="tabletop-caption">
+                  MODO CONVIDADO • EXPERIÊNCIA DE DEMONSTRAÇÃO
                 </div>
               </div>
             </div>
           ) : (
-            /* LOBBY / JOGO INICIADO */
-            <div className="game-lobby fade-in">
-              <div className="lobby-hud">
-                <h2>MASMORRA - NÍVEL 1</h2>
-                <div className="player-indicator">
-                  JOGADOR: {user?.username} ({isLoggedIn ? 'SALVO' : 'CONVIDADO'})
+            /* LOBBY / TABULEIRO ATIVO */
+            <div className="board-gameplay fade-in">
+              <div className="board-hud-header">
+                <h2>O CORREDOR DA MASMORRA</h2>
+                <div className="board-player-info">
+                  JOGADOR: {user?.username} ({isLoggedIn ? 'NUVEM' : 'LOCAL'})
                 </div>
               </div>
 
-              <div className="tactical-board">
-                <div className="board-grid">
-                  <div className="board-slot empty-slot">SLOT_01</div>
-                  <div className="board-slot empty-slot">SLOT_02</div>
-                  <div className="board-slot empty-slot">SLOT_03</div>
-                  <div className="board-slot empty-slot">SLOT_04</div>
+              <div className="physical-deck-area">
+                <div className="cards-mat">
+                  <div className="card-slot-outline">SLOT I</div>
+                  <div className="card-slot-outline">SLOT II</div>
+                  <div className="card-slot-outline">SLOT III</div>
+                  <div className="card-slot-outline">SLOT IV</div>
                 </div>
-                <div className="board-center-msg">
-                  AGUARDANDO SELEÇÃO DE CARTAS
+                <div className="mat-banner-msg">
+                  DISPONHA SUAS CARTAS NO TABULEIRO
                 </div>
               </div>
 
               {isAnonymous && (
-                <div className="guest-save-banner">
-                  ⚠️ SEU PROGRESSO NÃO SERÁ SALVO. <span className="save-link" onClick={() => { setAuthMode('register'); setPanelOpen(true); }}>CLIQUE AQUI PARA SE CADASTRAR</span>
+                <div className="save-banner-parchment">
+                  ⚠️ SEU PROGRESSO NÃO SERÁ GUARDADO. <span className="parchment-link" onClick={() => { setAuthMode('register'); setPanelOpen(true); }}>REGISTRE SUA FICHA</span> PARA SALVAR AS VITÓRIAS.
                 </div>
               )}
 
-              <div className="lobby-footer-actions">
-                <button className="btn-retro-secondary" onClick={() => logout()}>
-                  ABANDONAR RUN
+              <div className="board-actions">
+                <button className="btn-retro-red" onClick={() => logout()}>
+                  ABANDONAR PARTIDA
                 </button>
               </div>
             </div>
           )}
         </main>
 
-        {/* BOTTOM HUD / FOOTER */}
-        <footer className="game-hud-footer">
-          <div className="footer-left">DECK_RAIDERS_PROT_V0.0.1</div>
-          <div className="footer-right">© 2026 INSP: WIZARDRY & MIGHT-N-MAGIC</div>
+        {/* FOOTER */}
+        <footer className="hud-footer">
+          <div className="footer-left">DECK RAIDERS PROTÓTIPO V0.0.1</div>
+          <div className="footer-right">✦ INSPIRAÇÃO: WIZARDRY & MIGHT AND MAGIC ✦</div>
         </footer>
       </div>
     </div>

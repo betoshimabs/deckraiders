@@ -1,24 +1,27 @@
-/* Retro Dark Fantasy & CRT Screen Styling */
+/* Desktop Tabletop Dark Fantasy Styling */
 
-@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=MedievalSharp&display=swap');
 
 :root {
-  --color-bg: #07050a;
-  --color-terminal: #ffb703; /* Gold/Amber */
-  --color-terminal-glow: rgba(255, 183, 3, 0.4);
-  --color-border: #9d4edd; /* Dark Magic Purple */
-  --color-text: #e2e8f0;
-  --color-text-dim: #94a3b8;
-  --font-pixel: 'VT323', monospace;
-  --font-fantasy: 'MedievalSharp', cursive;
+  --color-table: #1c110a; /* Dark Oak Wood Table */
+  --color-parchment: #f2e8cf; /* Aged Paper */
+  --color-ink: #2b1a09; /* Iron Gall Dark Ink */
+  --color-gold: #b58913; /* Weathered Gold */
+  --color-gold-light: #e7c15c;
+  --color-crimson: #780000; /* Wax Seal Crimson */
+  --color-crimson-hover: #c1121f;
+  --font-text: 'Cinzel', Georgia, serif;
+  --font-header: 'MedievalSharp', cursive;
 }
 
 body {
   margin: 0;
-  background-color: #030205;
-  color: var(--color-text);
-  font-family: var(--font-pixel);
-  font-size: 1.25rem;
+  background-color: #0d0805;
+  background-image: 
+    radial-gradient(circle at center, #26160e 0%, #0d0805 100%),
+    repeating-linear-gradient(45deg, rgba(0,0,0,0.02) 0px, rgba(0,0,0,0.02) 2px, transparent 2px, transparent 4px);
+  color: var(--color-parchment);
+  font-family: var(--font-text);
   overflow: hidden;
   height: 100vh;
   display: flex;
@@ -34,324 +37,306 @@ body {
   align-items: center;
 }
 
-/* CRT Screen Effect Container */
-.crt-screen {
+/* Tabletop Layout Frame */
+.tabletop-table {
   position: relative;
   width: 100vw;
   height: 100vh;
-  background-color: var(--color-bg);
-  background-image: 
-    radial-gradient(ellipse at center, rgba(30, 15, 50, 0.3) 0%, rgba(7, 5, 10, 0.9) 100%),
-    repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15) 1px, transparent 1px, transparent 2px);
-  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.9);
   overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* scanlines animation overlay */
-.scanlines {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    rgba(18, 16, 16, 0) 50%, 
-    rgba(0, 0, 0, 0.25) 50%
-  );
-  background-size: 100% 4px;
-  z-index: 10;
-  pointer-events: none;
-  opacity: 0.85;
-}
-
-/* Main game wrapper fitted as an vintage screen console */
-.game-container {
+.tabletop-wrapper {
   position: relative;
   width: 100%;
   height: 100%;
-  max-width: 1080px;
-  max-height: 720px;
-  border: 4px solid var(--color-border);
+  max-width: 1020px;
+  max-height: 700px;
+  border: 12px solid #2b1810; /* Heavy Wooden Box Border */
+  outline: 3px solid #0d0805;
   box-shadow: 
-    0 0 30px rgba(157, 78, 221, 0.3),
-    inset 0 0 20px rgba(0, 0, 0, 0.8);
+    0 15px 40px rgba(0, 0, 0, 0.8),
+    inset 0 0 30px rgba(0, 0, 0, 0.9);
   display: flex;
   flex-direction: column;
-  background: rgba(10, 7, 18, 0.8);
+  background: #190e09; /* Wooden Inner surface */
   box-sizing: border-box;
-  padding: 10px;
+  padding: 16px;
   z-index: 5;
 }
 
-/* Corner decorations like retro ASCII terminals */
-.game-container::before {
-  content: '+';
-  position: absolute;
-  top: -14px;
-  left: -9px;
-  color: var(--color-border);
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-.game-container::after {
-  content: '+';
-  position: absolute;
-  bottom: -14px;
-  right: -9px;
-  color: var(--color-border);
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-/* TOP HUD BAR */
-.game-hud-bar {
+/* TOP HUD (Stitched Leather Style Ribbon) */
+.hud-banner {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2px double var(--color-border);
-  padding: 8px 16px;
-  margin-bottom: 12px;
+  background: #2a1b12;
+  border: 2px solid #4a3222;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4), inset 0 2px 4px rgba(0,0,0,0.5);
+  padding: 10px 20px;
+  margin-bottom: 16px;
+  border-radius: 4px;
 }
 
-.hud-badge {
-  font-size: 1.1rem;
+.hud-badge-gold {
+  font-family: var(--font-header);
+  font-size: 1.15rem;
+  color: var(--color-gold-light);
+  letter-spacing: 2px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.hud-btn-parchment {
+  background: var(--color-parchment);
+  border: 2px solid var(--color-ink);
+  color: var(--color-ink);
+  padding: 6px 16px;
+  font-family: var(--font-header);
+  font-size: 1rem;
   letter-spacing: 1px;
-  color: var(--color-terminal);
-  text-shadow: 0 0 8px var(--color-terminal-glow);
-}
-
-.auth-panel-wrapper {
-  position: relative;
-}
-
-.hud-btn-auth {
-  background: transparent;
-  border: 1px solid var(--color-border);
-  color: var(--color-text-dim);
-  padding: 4px 14px;
-  font-family: var(--font-pixel);
-  font-size: 1.1rem;
-  letter-spacing: 1px;
+  font-weight: bold;
+  border-radius: 2px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
   cursor: pointer;
   transition: all 0.2s;
 }
 
-.hud-btn-auth:hover {
-  border-color: var(--color-terminal);
-  color: var(--color-terminal);
-  text-shadow: 0 0 8px var(--color-terminal-glow);
+.hud-btn-parchment:hover {
+  background: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.4);
 }
 
-.hud-btn-auth.active-user {
-  border-color: #10b981;
-  color: #34d399;
-  text-shadow: 0 0 8px rgba(52, 211, 153, 0.4);
+.hud-btn-parchment.active-user {
+  background: #d8f3dc;
+  border-color: #1b4332;
+  color: #1b4332;
 }
 
-.hud-btn-auth.active-guest {
-  border-color: var(--color-terminal);
-  color: var(--color-terminal);
-  text-shadow: 0 0 8px var(--color-terminal-glow);
+.hud-btn-parchment.active-guest {
+  background: #ffe3a8;
+  border-color: #7f5500;
+  color: #7f5500;
 }
 
-/* RETRO DIALOG BOX / MODAL */
-.retro-modal {
+/* PARCHMENT MODAL (Ancient Scroll Page Style) */
+.parchment-modal {
   position: absolute;
   right: 0;
-  top: calc(100% + 10px);
-  width: 280px;
-  background: #0f0b18;
-  border: 3px double var(--color-border);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.9);
-  padding: 16px;
+  top: calc(100% + 14px);
+  width: 300px;
+  background: var(--color-parchment);
+  color: var(--color-ink);
+  border: 4px double var(--color-ink);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+  padding: 20px;
   z-index: 50;
   box-sizing: border-box;
+  border-radius: 3px;
 }
 
 .modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid var(--color-border);
-  padding-bottom: 6px;
-  margin-bottom: 12px;
+  border-bottom: 2px solid var(--color-ink);
+  padding-bottom: 8px;
+  margin-bottom: 14px;
 }
 
 .modal-header h4 {
   margin: 0;
-  font-family: var(--font-pixel);
-  font-size: 1.25rem;
-  color: var(--color-terminal);
+  font-family: var(--font-header);
+  font-size: 1.3rem;
+  color: var(--color-crimson);
   letter-spacing: 1px;
 }
 
 .modal-close {
   background: transparent;
   border: none;
-  color: var(--color-text-dim);
-  font-size: 1.4rem;
+  color: var(--color-ink);
+  font-size: 1.6rem;
+  font-weight: bold;
   cursor: pointer;
   padding: 0;
   line-height: 1;
 }
 
 .modal-close:hover {
-  color: #ffffff;
+  color: var(--color-crimson);
 }
 
 .modal-body {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
 
-.logged-in-info p {
+.modal-body p {
   margin: 0;
-  font-size: 1.1rem;
-  text-align: left;
+  font-size: 1rem;
+  font-weight: 700;
 }
 
-.retro-input-group {
+.parchment-input-group {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
   text-align: left;
 }
 
-.retro-input-group label {
+.parchment-input-group label {
+  font-family: var(--font-header);
   font-size: 0.95rem;
-  color: var(--color-terminal);
+  font-weight: bold;
   letter-spacing: 1px;
+  color: var(--color-ink);
 }
 
-.retro-input-group input {
-  background: #06040a;
-  border: 1px solid var(--color-border);
-  color: #ffffff;
+.parchment-input-group input {
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--color-ink);
+  color: var(--color-ink);
   padding: 8px;
-  font-family: var(--font-pixel);
-  font-size: 1.1rem;
-}
-
-.retro-input-group input:focus {
-  outline: none;
-  border-color: var(--color-terminal);
-  box-shadow: 0 0 5px var(--color-terminal-glow);
-}
-
-.error-box {
-  background: rgba(239, 68, 68, 0.1);
-  border: 1px solid #ef4444;
-  color: #fca5a5;
-  padding: 6px;
+  font-family: inherit;
   font-size: 0.95rem;
+  border-radius: 2px;
+}
+
+.parchment-input-group input:focus {
+  outline: none;
+  background: #ffffff;
+  border-color: var(--color-crimson);
+}
+
+.error-scroll {
+  background: rgba(193, 18, 31, 0.1);
+  border-left: 3px solid var(--color-crimson);
+  color: var(--color-crimson);
+  padding: 8px;
+  font-size: 0.9rem;
   text-align: left;
+  font-weight: bold;
 }
 
 .modal-switch {
-  font-size: 0.95rem;
-  margin-top: 6px;
-  color: var(--color-text-dim);
+  font-size: 0.85rem;
+  font-weight: bold;
+  margin-top: 8px;
+  color: var(--color-ink);
 }
 
 .modal-switch span {
-  color: var(--color-terminal);
+  color: var(--color-crimson);
   text-decoration: underline;
   cursor: pointer;
 }
 
-/* DISPLAY MAIN */
-.game-display {
+/* PLAYING BOARD (Main Surface) */
+.playing-board {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 10px;
 }
 
-/* MAIN MENU (Visitor state) */
-.main-menu {
+/* MAIN MENU SCROLL (Centered Parchment) */
+.menu-scroll {
+  background: var(--color-parchment);
+  color: var(--color-ink);
+  border: 6px double var(--color-ink);
+  box-shadow: 
+    0 10px 25px rgba(0, 0, 0, 0.6),
+    inset 0 0 40px rgba(56, 41, 29, 0.15);
+  padding: 40px 60px;
+  border-radius: 4px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 48px;
+  gap: 36px;
+  max-width: 600px;
 }
 
-.title-logo {
+.fantasy-logo {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 8px;
 }
 
-.subtitle-tag {
-  font-size: 1.3rem;
-  letter-spacing: 4px;
-  color: var(--color-terminal);
-  text-shadow: 0 0 10px var(--color-terminal-glow);
+.fantasy-tag {
+  font-family: var(--font-header);
+  font-size: 1.1rem;
+  letter-spacing: 3px;
+  color: var(--color-gold);
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
-.title-text {
-  font-family: var(--font-fantasy);
-  font-size: 5rem;
+.title-fantasy {
+  font-family: var(--font-header);
+  font-size: 4.8rem;
   font-weight: normal;
   margin: 0;
-  background: linear-gradient(180deg, #ffffff 0%, #a78bfa 50%, #4c1d95 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.8));
+  color: var(--color-crimson);
   letter-spacing: 2px;
+  text-shadow: 1px 1px 0px #ffffff, 3px 3px 0px rgba(0,0,0,0.15);
+  line-height: 1;
 }
 
-.menu-choices {
+.menu-action-zone {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 16px;
 }
 
-/* Gigantic retro game start button */
-.btn-start-game {
-  font-family: var(--font-fantasy);
-  font-size: 1.8rem;
+/* Wax Seal Style Large Button */
+.btn-wax-seal {
+  font-family: var(--font-header);
+  font-size: 1.6rem;
   color: #ffffff;
-  background: linear-gradient(180deg, #8b5cf6 0%, #4c1d95 100%);
-  border: 4px double #d8b4fe;
-  padding: 14px 60px;
-  border-radius: 4px;
+  background: radial-gradient(circle at 30% 30%, var(--color-crimson-hover) 0%, var(--color-crimson) 100%);
+  border: 2px solid #4a0000;
+  padding: 14px 48px;
+  border-radius: 40px;
   cursor: pointer;
-  box-shadow: 
-    0 0 0 4px #07050a,
-    0 0 20px rgba(139, 92, 246, 0.4);
-  transition: all 0.2s cubic-bezier(0.19, 1, 0.22, 1);
+  font-weight: bold;
   letter-spacing: 2px;
-}
-
-.btn-start-game:hover {
-  transform: translateY(-2px);
-  background: linear-gradient(180deg, #a78bfa 0%, #6d28d9 100%);
-  border-color: #ffffff;
   box-shadow: 
-    0 0 0 4px #07050a,
-    0 0 30px rgba(167, 139, 250, 0.7);
+    0 4px 10px rgba(0, 0, 0, 0.4),
+    inset 0 2px 4px rgba(255, 255, 255, 0.3);
+  transition: all 0.2s ease-in-out;
 }
 
-.btn-start-game:active {
-  transform: translateY(1px);
+.btn-wax-seal:hover {
+  transform: scale(1.04);
+  background: radial-gradient(circle at 30% 30%, #da1e28 0%, var(--color-crimson-hover) 100%);
+  box-shadow: 
+    0 6px 15px rgba(0, 0, 0, 0.5),
+    0 0 10px rgba(193, 18, 31, 0.3),
+    inset 0 2px 4px rgba(255, 255, 255, 0.4);
 }
 
-.guest-warning-text {
-  font-size: 0.95rem;
-  letter-spacing: 2px;
-  color: var(--color-text-dim);
+.btn-wax-seal:active {
+  transform: scale(0.98);
 }
 
-/* GAME LOBBY / ACTIVE DUNGEON */
-.game-lobby {
+.tabletop-caption {
+  font-size: 0.9rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: var(--color-ink);
+  opacity: 0.8;
+}
+
+/* LOBBY / TABLETOP BOARD STATE */
+.board-gameplay {
   width: 100%;
   height: 100%;
   display: flex;
@@ -360,144 +345,154 @@ body {
   box-sizing: border-box;
 }
 
-.lobby-hud {
+.board-hud-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 2px solid #362217;
+  padding-bottom: 8px;
   margin-bottom: 12px;
 }
 
-.lobby-hud h2 {
-  font-family: var(--font-fantasy);
+.board-hud-header h2 {
+  font-family: var(--font-header);
   margin: 0;
-  color: var(--color-terminal);
+  color: var(--color-parchment);
   font-size: 1.8rem;
-  text-shadow: 0 0 8px var(--color-terminal-glow);
+  letter-spacing: 1px;
 }
 
-.player-indicator {
-  font-size: 1.2rem;
-  color: var(--color-text);
+.board-player-info {
+  font-size: 1.1rem;
+  color: var(--color-gold-light);
 }
 
-/* Tactical Board */
-.tactical-board {
+/* Physical Felt/Leather mat for Cards layout */
+.physical-deck-area {
   flex-grow: 1;
-  border: 2px dashed var(--color-border);
-  background: rgba(0, 0, 0, 0.4);
+  border: 4px double #3e271c;
+  background: #110906; /* Dark Felt Mat */
+  box-shadow: inset 0 4px 20px rgba(0,0,0,0.8);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 20px;
-  padding: 30px;
-  min-height: 260px;
+  padding: 24px;
+  min-height: 250px;
   margin-bottom: 16px;
+  border-radius: 2px;
 }
 
-.board-grid {
+.cards-mat {
   display: flex;
   gap: 24px;
 }
 
-.board-slot {
-  width: 120px;
-  height: 170px;
-  border: 2px dashed var(--color-text-dim);
-  border-radius: 6px;
+/* Card Slot outline like tabletop print board */
+.card-slot-outline {
+  width: 110px;
+  height: 160px;
+  border: 2px dashed rgba(242, 232, 207, 0.25);
+  border-radius: 4px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1rem;
-  color: var(--color-text-dim);
-}
-
-.board-slot.empty-slot {
-  background: rgba(157, 78, 221, 0.03);
-}
-
-.board-center-msg {
-  font-size: 1.2rem;
-  color: var(--color-terminal);
+  font-size: 0.9rem;
+  color: rgba(242, 232, 207, 0.25);
+  font-family: var(--font-header);
   letter-spacing: 1px;
-  text-shadow: 0 0 5px var(--color-terminal-glow);
 }
 
-.guest-save-banner {
-  background: rgba(255, 183, 3, 0.08);
-  border: 1px solid var(--color-terminal);
-  color: #ffe699;
+.mat-banner-msg {
+  font-family: var(--font-header);
+  font-size: 1.25rem;
+  color: var(--color-gold-light);
+  letter-spacing: 1px;
+}
+
+.save-banner-parchment {
+  background: var(--color-parchment);
+  color: var(--color-ink);
+  border: 2px solid var(--color-ink);
   padding: 10px;
-  font-size: 1.05rem;
-  letter-spacing: 1px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
   margin-bottom: 16px;
   text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-.save-link {
-  color: var(--color-terminal);
+.parchment-link {
+  color: var(--color-crimson);
   text-decoration: underline;
   cursor: pointer;
-  font-weight: bold;
 }
 
-.save-link:hover {
-  color: #ffffff;
+.parchment-link:hover {
+  color: var(--color-crimson-hover);
 }
 
-.lobby-footer-actions {
+.board-actions {
   display: flex;
   justify-content: flex-end;
 }
 
-/* BUTTON RETRO DESIGN */
-.btn-primary {
-  font-family: var(--font-pixel);
+/* RETRO BUTTONS (WOOD & GOLD PLATES) */
+.btn-retro-gold {
+  font-family: var(--font-header);
   font-size: 1.15rem;
-  background: var(--color-terminal);
-  color: #000000;
-  border: none;
-  padding: 8px 16px;
+  background: linear-gradient(135deg, var(--color-gold-light), var(--color-gold));
+  color: var(--color-ink);
+  border: 2px solid var(--color-ink);
+  padding: 8px 18px;
   cursor: pointer;
   font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
-.btn-primary:hover {
+.btn-retro-gold:hover {
   background: #ffffff;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.4);
 }
 
-.btn-retro-secondary {
-  font-family: var(--font-pixel);
+.btn-retro-red {
+  font-family: var(--font-header);
   font-size: 1.15rem;
-  background: transparent;
-  color: var(--color-text-dim);
-  border: 1px solid var(--color-border);
+  background: var(--color-crimson);
+  color: #ffffff;
+  border: 2px solid #4a0000;
   padding: 8px 20px;
   cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
-.btn-retro-secondary:hover {
-  border-color: #ffffff;
-  color: #ffffff;
+.btn-retro-red:hover {
+  background: var(--color-crimson-hover);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.4);
 }
 
-/* BOTTOM HUD / FOOTER */
-.game-hud-footer {
+/* HUD FOOTER (Leather Stitched Rib) */
+.hud-footer {
   display: flex;
   justify-content: space-between;
-  border-top: 2px double var(--color-border);
-  padding: 8px 16px;
-  margin-top: 12px;
-  font-size: 1.1rem;
+  background: #2a1b12;
+  border: 2px solid #4a3222;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+  padding: 10px 20px;
+  margin-top: 16px;
+  font-family: var(--font-header);
+  font-size: 1rem;
   color: var(--color-text-dim);
+  border-radius: 4px;
 }
 
 .w-full {
   width: 100%;
 }
 
-/* Animation utilities */
+/* Fade animation */
 .fade-in {
   animation: retroFadeIn 0.3s ease-out;
 }
