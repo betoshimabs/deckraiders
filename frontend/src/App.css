@@ -1,3 +1,18 @@
+/* Pulp Tabletop Design - Deck Raiders */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=MedievalSharp&display=swap');
+
+:root {
+  --color-parchment: #f2e8cf;
+  --color-ink: #1c110a;
+  --color-gold: #b58913;
+  --color-gold-light: #ffd166;
+  --color-crimson: #780000;
+  --color-crimson-hover: #c1121f;
+  --font-fantasy: 'MedievalSharp', cursive;
+  --font-text: 'Cinzel', Georgia, serif;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -6,6 +21,8 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  color: var(--color-parchment);
+  font-family: var(--font-text);
   overflow: hidden;
   height: 100vh;
 }
@@ -22,17 +39,364 @@ body {
   box-sizing: border-box;
 }
 
+/* Quadrante Superior Esquerdo - LOGO */
 .top-left-logo-container {
   position: absolute;
   top: 40px;
   left: 40px;
-  width: 40vw; /* Occupy a good chunk of the top-left quadrant */
-  max-width: 500px;
+  width: 35vw;
+  max-width: 480px;
 }
 
 .deckraiders-logo {
   width: 100%;
   height: auto;
   display: block;
-  filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.6));
+  filter: drop-shadow(0 6px 15px rgba(0, 0, 0, 0.8));
+}
+
+/* Quadrante Superior Direito - AUTH BUTTON & DROPDOWN */
+.top-right-auth-container {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  z-index: 100;
+}
+
+.btn-retro-parchment {
+  background: var(--color-parchment);
+  border: 3px double var(--color-ink);
+  color: var(--color-ink);
+  padding: 10px 24px;
+  font-family: var(--font-fantasy);
+  font-size: 1.15rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-retro-parchment:hover {
+  background: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.6);
+}
+
+/* Modal Pergaminho */
+.retro-parchment-modal {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 14px);
+  width: 320px;
+  background: var(--color-parchment);
+  color: var(--color-ink);
+  border: 6px double var(--color-ink);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+  padding: 24px;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--color-ink);
+  padding-bottom: 8px;
+  margin-bottom: 16px;
+}
+
+.modal-header h4 {
+  margin: 0;
+  font-family: var(--font-fantasy);
+  font-size: 1.3rem;
+  color: var(--color-crimson);
+  letter-spacing: 1px;
+}
+
+.modal-close {
+  background: transparent;
+  border: none;
+  color: var(--color-ink);
+  font-size: 1.6rem;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.parchment-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: left;
+}
+
+.parchment-input-group label {
+  font-family: var(--font-fantasy);
+  font-size: 0.95rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.parchment-input-group input {
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--color-ink);
+  color: var(--color-ink);
+  padding: 8px;
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+
+.parchment-input-group input:focus {
+  outline: none;
+  background: #ffffff;
+  border-color: var(--color-crimson);
+}
+
+.error-scroll {
+  background: rgba(193, 18, 31, 0.1);
+  border-left: 3px solid var(--color-crimson);
+  color: var(--color-crimson);
+  padding: 8px;
+  font-size: 0.9rem;
+  text-align: left;
+  font-weight: bold;
+}
+
+.modal-switch {
+  font-size: 0.85rem;
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+.modal-switch span {
+  color: var(--color-crimson);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Quadrante Esquerdo Inferior - START GAME */
+.bottom-left-action-container {
+  position: absolute;
+  bottom: 60px;
+  left: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  z-index: 90;
+}
+
+.btn-retro-action {
+  font-family: var(--font-fantasy);
+  font-size: 1.8rem;
+  color: #ffffff;
+  background: radial-gradient(circle at 30% 30%, var(--color-crimson-hover) 0%, var(--color-crimson) 100%);
+  border: 3px double var(--color-gold-light);
+  padding: 14px 44px;
+  border-radius: 4px;
+  cursor: pointer;
+  letter-spacing: 2px;
+  box-shadow: 
+    0 8px 16px rgba(0, 0, 0, 0.6),
+    inset 0 2px 4px rgba(255, 255, 255, 0.3);
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-retro-action:hover {
+  transform: translateY(-3px);
+  background: radial-gradient(circle at 30% 30%, #da1e28 0%, var(--color-crimson-hover) 100%);
+  box-shadow: 
+    0 12px 20px rgba(0, 0, 0, 0.7),
+    0 0 15px rgba(193, 18, 31, 0.4);
+}
+
+.tabletop-caption {
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  color: var(--color-parchment);
+  opacity: 0.7;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+}
+
+/* LOBBY / JOGO INICIADO */
+.board-gameplay {
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: rgba(10, 7, 18, 0.3);
+}
+
+.board-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid rgba(242, 232, 207, 0.2);
+  padding-bottom: 15px;
+}
+
+.board-title-group {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.board-logo-small {
+  height: 48px;
+  width: auto;
+}
+
+.board-header h2 {
+  font-family: var(--font-fantasy);
+  margin: 0;
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+}
+
+.board-session-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.player-badge {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(242, 232, 207, 0.3);
+  padding: 6px 14px;
+  border-radius: 4px;
+  font-size: 0.95rem;
+}
+
+.btn-parchment-sm {
+  background: var(--color-parchment);
+  border: 2px solid var(--color-ink);
+  color: var(--color-ink);
+  padding: 6px 12px;
+  font-family: var(--font-fantasy);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Board felt */
+.physical-deck-area {
+  flex-grow: 1;
+  border: 4px double #3e271c;
+  background: rgba(15, 10, 8, 0.85);
+  box-shadow: inset 0 5px 25px rgba(0,0,0,0.9);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 30px;
+  margin: 30px 0;
+  border-radius: 4px;
+}
+
+.cards-mat {
+  display: flex;
+  gap: 24px;
+}
+
+.card-slot-outline {
+  width: 120px;
+  height: 175px;
+  border: 2px dashed rgba(242, 232, 207, 0.3);
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.95rem;
+  color: rgba(242, 232, 207, 0.4);
+  font-family: var(--font-fantasy);
+  letter-spacing: 1px;
+}
+
+.mat-banner-msg {
+  font-family: var(--font-fantasy);
+  font-size: 1.4rem;
+  color: var(--color-gold-light);
+  letter-spacing: 1px;
+}
+
+.save-banner-parchment {
+  background: var(--color-parchment);
+  color: var(--color-ink);
+  border: 2px solid var(--color-ink);
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.parchment-link {
+  color: var(--color-crimson);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.parchment-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 200;
+}
+
+.retro-parchment-modal.static-modal {
+  position: relative;
+  top: 0;
+  right: 0;
+}
+
+/* Helpers */
+.w-full {
+  width: 100%;
+}
+
+.btn-retro-red {
+  font-family: var(--font-fantasy);
+  font-size: 1.15rem;
+  background: var(--color-crimson);
+  color: #ffffff;
+  border: 2px solid #4a0000;
+  padding: 8px 20px;
+  cursor: pointer;
+}
+
+.btn-retro-red:hover {
+  background: var(--color-crimson-hover);
+}
+
+.fade-in {
+  animation: retroFadeIn 0.3s ease-out;
+}
+
+@keyframes retroFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
